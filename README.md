@@ -2,5 +2,5 @@
 
 python send SMS
 
-## usage:
-**./pysendsms.py -h
+```pysendsms.py -h
+```

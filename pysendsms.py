@@ -5,6 +5,7 @@ import threading
 from string import Template
 import queue
 import gammu
+import json
 
 
 # Configure Arguments:
@@ -17,7 +18,7 @@ group.add_argument('-t', '--template', help='template for the message. i.e:\
         \'Mr. [$name|${name}] like this\'')
 aparser.add_argument('-n', '--number', help='number to sms send')
 aparser.add_argument('-i', '--identifiers', help='identifiers that is using\
-        into templates')
+        into templatesi. i.e: {"name":"jorge",...}')
 args = aparser.parse_args()
 
 
@@ -28,6 +29,7 @@ class SendSMS(threading.Thread):
 
 
 if __name__ == '__main__': 
+ 
     fifo = queue.Queue()
     
     print(args) #debug Arg
@@ -35,8 +37,11 @@ if __name__ == '__main__':
     #print(args.template)
     t = args.template
     if t:
+        i = args.identifiers
+        #i = json.loads(i.replace(, ))
+
         t = Template(t)
-        print(t.substitute())
+        #print(t.substitute())
     else:
         print(t or '')
 

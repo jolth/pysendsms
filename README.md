@@ -2,5 +2,7 @@
 
 python send SMS
 
-```pysendsms.py -h
+## usage:
+```
+pysendsms.py -h
 ```

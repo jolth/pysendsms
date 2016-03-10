@@ -15,7 +15,7 @@ group = aparser.add_mutually_exclusive_group()
 group.add_argument('-f', '--file',  help='file CSV to reading')
 group.add_argument('-m', '--message', help='message to send')
 group.add_argument('-t', '--template', help='template for the message. i.e:\
-        \'Mr. [$name|${name}] like this\'')
+        \'Sr. [$name|${name}], your number account isn\'t active\'')
 aparser.add_argument('-n', '--number', help='number to sms send')
 aparser.add_argument('-i', '--identifiers', help='identifiers that is using\
         into templatesi. i.e: {"name":"jorge",...}')

@@ -27,7 +27,7 @@ class SendSMS(threading.Thread):
         pass
 
 
-def identifiers(i):
+def identifiers(i: str) -> dict:
     """return one dictionary with all identifiers"""
     i = json.loads(i.replace('\'', '\"'))
     return i
@@ -36,4 +36,11 @@ def identifiers(i):
 if __name__ == '__main__': 
  
     fifo = queue.Queue()
-    print(args) #debug Arg
+    print(args) #debug arg
+    #if args.identifiers is not None:
+    if args.identifiers:
+        print(identifiers(args.identifiers)) #debug
+
+    print(dir(args)) #debug
+    print(args._get_args()) #debug
+    print(args._get_kwargs()) #debug

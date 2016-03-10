@@ -56,9 +56,11 @@ class Arguments(object):
         return 'NUMBER'
 
 
+#def arg_parser
+
+
 if __name__ == '__main__': 
  
-    #print(args) #debug arg
     #if args.identifiers is not None:
     #if args.identifiers:
     #    print(identifiers(args.identifiers)) #debug
@@ -69,12 +71,20 @@ if __name__ == '__main__':
         if value and hasattr(arg, key):
             print('KEY:', key) #debug
             print(callable(getattr(arg, key))) #debug
-            print(getattr(arg, key)())
+            print(getattr(arg, key)()) #debug
             break
 
     #print(arg.template())
 
+    print(args) #debug arg
+
+    #def foo(*a):
+    #    print(a)
+
+    #foo(*args)
     #print(dir(args)) #debug
+    #for i in args:
+     #   print(i)
     #print(args._get_args()) #debug
     #print(args._get_kwargs()) #debug
 

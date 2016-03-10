@@ -15,7 +15,7 @@ group = aparser.add_mutually_exclusive_group()
 group.add_argument('-f', '--file',  help='file CSV to reading')
 group.add_argument('-m', '--message', help='message to send')
 group.add_argument('-t', '--template', help='template for the message. i.e:\
-        \'Sr. [$name|${name}], your number account isn\'t active\'')
+        \"Sr. [$name|${name}], your number account isn\'t active\"')
 aparser.add_argument('-n', '--number', help='number to sms send')
 aparser.add_argument('-i', '--identifiers', help='identifiers that is using\
         into templatesi. i.e: {"name":"jorge",...}')
@@ -27,27 +27,13 @@ class SendSMS(threading.Thread):
         pass
 
 
+def identifiers(i):
+    """return one dictionary with all identifiers"""
+    i = json.loads(i.replace('\'', '\"'))
+    return i
+
 
 if __name__ == '__main__': 
  
     fifo = queue.Queue()
-    
     print(args) #debug Arg
-
-    #print(args.template)
-    t = args.template
-    if t:
-        i = args.identifiers
-        #i = json.loads(i.replace(, ))
-
-        t = Template(t)
-        #print(t.substitute())
-    else:
-        print(t or '')
-
-    #t = Template(args.template) or None
-    #if t:
-    #    print(t.substitute(name='jorge'))
-    #else:
-    #    print(t)
-

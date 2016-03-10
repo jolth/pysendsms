@@ -36,9 +36,9 @@ def identifiers(i: str) -> dict:
 class Arguments(object):
     """class that process each one of the arguments"""
 
-    def __inint__(self, l: list):
-        self.l = l
-        print(self.l)
+    #def __init__(self, l):
+    #    self.l = l
+    #    print(self.l)
 
     def file(self):
         return 'FILE'

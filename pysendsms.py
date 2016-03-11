@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""pysendsms.py.aux -t 'Sr. $name, your number account is active' -i {'name':'jorge'}"
+"""
 import argparse
 import threading
 from string import Template
@@ -15,7 +17,7 @@ group = aparser.add_mutually_exclusive_group()
 group.add_argument('-f', '--file',  help='file CSV to reading')
 group.add_argument('-m', '--message', help='message to send')
 group.add_argument('-t', '--template', help='template for the message. i.e:\
-        \"Sr. [$name|${name}], your number account isn\'t active\"')
+        \"Sr. [$name|${name}], your number account is not active\"')
 aparser.add_argument('-n', '--number', help='number to sms send')
 aparser.add_argument('-i', '--identifiers', help='identifiers that is using\
         into templates. i.e: {"name":"jorge",...}')
@@ -36,9 +38,20 @@ def identifiers(i: str) -> dict:
 class Arguments(object):
     """class that process each one of the arguments"""
 
-    #def __init__(self, l):
-    #    self.l = l
-    #    print(self.l)
+    def __init__(self, args: list):
+        self.args = args
+        print(self.args) #debug
+        self.toCallArg()
+
+    def toCallArg(self):
+        """parser from arguments"""
+        for key, value in dict(self.args._get_kwargs()).items():
+            print(hasattr(self, key), value) #debug
+            if value and hasattr(self, key):
+                print('KEY:', key) #debug
+                print(callable(getattr(self, key))) #debug
+                print(getattr(self, key)()) #debug
+                break
 
     def file(self):
         return 'FILE'
@@ -65,18 +78,18 @@ if __name__ == '__main__':
     #if args.identifiers:
     #    print(identifiers(args.identifiers)) #debug
 
-    arg =  Arguments()
-    for key, value in dict(args._get_kwargs()).items():
-        print(hasattr(arg, key), value) #debug
-        if value and hasattr(arg, key):
-            print('KEY:', key) #debug
-            print(callable(getattr(arg, key))) #debug
-            print(getattr(arg, key)()) #debug
-            break
+    arg =  Arguments(args)
+    #for key, value in dict(args._get_kwargs()).items():
+    #    print(hasattr(arg, key), value) #debug
+    #    if value and hasattr(arg, key):
+    #        print('KEY:', key) #debug
+    #        print(callable(getattr(arg, key))) #debug
+    #        print(getattr(arg, key)()) #debug
+    #        break
 
     #print(arg.template())
 
-    print(args) #debug arg
+   #print(args) #debug arg
 
     #def foo(*a):
     #    print(a)

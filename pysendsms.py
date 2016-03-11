@@ -23,11 +23,17 @@ aparser.add_argument('-i', '--identifiers', help='identifiers that is using\
         into templates. i.e: {"name":"jorge",...}')
 args = aparser.parse_args()
 
+fifo = queue.Queue()
 
-#fifo = queue.Queue()
-#class SendSMS(threading.Thread):
-#    def __init__(self):
-#        pass
+class SendSMS(threading.Thread):
+    """class using for create and sending to message"""
+    def __init__(self, fifo):
+        self.fifo = fifo
+        threading.Thread.__init__(self)
+
+    def run(self):
+        pass
+
 
 def identifiers(i: str) -> dict:
     """return one dictionary with all identifiers"""
@@ -36,7 +42,7 @@ def identifiers(i: str) -> dict:
 
 
 class Arguments(object):
-    """class that process each one of the arguments"""
+    """the Argument class is a container of methods for the arguments."""
 
     def __init__(self, args: list):
         self.args = args

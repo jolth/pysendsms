@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""pysendsms.py.aux -t 'Sr. $name, your number account is active' -i {'name':'jorge'}"
+"""pysendsms.py -t 'Sr. $name, your number account is active' -i {'name':'jorge'}
 """
 import argparse
 import threading
 from string import Template
-import queue
 import gammu
 import json
 
@@ -23,7 +22,6 @@ aparser.add_argument('-i', '--identifiers', help='identifiers that is using\
         into templates. i.e: {"name":"jorge",...}')
 args = aparser.parse_args()
 
-fifo = queue.Queue()
 
 class SendSMS(threading.Thread):
     """class using for create and sending to message"""
@@ -45,13 +43,13 @@ class Arguments(object):
     """the Argument class is a container of methods for the arguments."""
 
     def __init__(self, args: list):
-        self.args = args
-        print(self.args) #debug
+        self._args = args
+        print(self._args) #debug
         self.toCallArg()
 
     def toCallArg(self):
         """parser from arguments"""
-        for key, value in dict(self.args._get_kwargs()).items():
+        for key, value in dict(self._args._get_kwargs()).items():
             print(hasattr(self, key), value) #debug
             if value and hasattr(self, key):
                 print('KEY:', key) #debug
@@ -75,36 +73,6 @@ class Arguments(object):
         return 'NUMBER'
 
 
-#def arg_parser
-
-
 if __name__ == '__main__': 
  
-    #if args.identifiers is not None:
-    #if args.identifiers:
-    #    print(identifiers(args.identifiers)) #debug
-
     arg =  Arguments(args)
-    #for key, value in dict(args._get_kwargs()).items():
-    #    print(hasattr(arg, key), value) #debug
-    #    if value and hasattr(arg, key):
-    #        print('KEY:', key) #debug
-    #        print(callable(getattr(arg, key))) #debug
-    #        print(getattr(arg, key)()) #debug
-    #        break
-
-    #print(arg.template())
-
-   #print(args) #debug arg
-
-    #def foo(*a):
-    #    print(a)
-
-    #foo(*args)
-    #print(dir(args)) #debug
-    #for i in args:
-     #   print(i)
-    #print(args._get_args()) #debug
-    #print(args._get_kwargs()) #debug
-
-    
